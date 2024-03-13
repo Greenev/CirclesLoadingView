@@ -2,6 +2,7 @@
 <resources>
 
     <declare-styleable name="CirclesLoadingView">
+        <attr name="circleColor" format="color" />
         <attr name="circleRadius" format="dimension" />
         <attr name="circleMargin" format="dimension" />
         <attr name="animDistance" format="dimension" />
