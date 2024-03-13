@@ -1,12 +1,14 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'maven-publish'
 
 android {
     compileSdkVersion 28
 
     defaultConfig {
         minSdkVersion 16
+        //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -22,6 +24,18 @@ android {
         }
     }
 
+    afterEvaluate {
+        publishing {
+            publications {
+                maven(MavenPublication) {
+                    from components.release
+                    groupId = 'me.ibrahimsn.circles_loading'
+                    artifactId = 'circles_loading'
+                    version = "0.0.4"
+                }
+            }
+        }
+    }
 }
 
 dependencies {
