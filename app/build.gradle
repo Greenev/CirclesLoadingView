@@ -19,16 +19,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-}
 
-afterEvaluate {
-    publishing {
-        publications {
-            maven(MavenPublication) {
-                from components.release
-                groupId = 'com.jbvincey.nestedradiobuttonsample'
-                artifactId = 'nestedradiobuttonsample'
-                version = "0.0.4"
+    afterEvaluate {
+        publishing {
+            publications {
+                maven(MavenPublication) {
+                    from components.release
+                    groupId = 'me.ibrahimsn.circles_loading'
+                    artifactId = 'circles_loading'
+                    version = "0.0.4"
+                }
             }
         }
     }
