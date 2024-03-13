@@ -22,28 +22,22 @@ import me.ibrahimsn.lib.Constants.DEFAULT_COLOR
 
 class CirclesLoadingView : View {
 
+    private var circleColor = DEFAULT_COLOR
     private var circleRadius = DEFAULT_CIRCLE_RADIUS
     private var circleMargin = DEFAULT_CIRCLE_MARGIN
     private var animDistance = DEFAULT_ANIM_DISTANCE
     private var animDuration = DEFAULT_ANIM_DURATION
     private var animDelay = DEFAULT_ANIM_DELAY
     private var animInterpolator = DEFAULT_ANIM_INTERPOLATOR
-    private var color = DEFAULT_COLOR
 
     private val positions = mutableListOf(0f, 0f, 0f, 0f)
     private val animatorSet = AnimatorSet()
-
-    private val paint = Paint().apply {
-        isAntiAlias = true
-        style = Paint.Style.FILL
-        color = color
-    }
 
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
         val typedArray = context.theme.obtainStyledAttributes(attrs, R.styleable.CirclesLoadingView, 0, 0)
-        color = typedArray.getColor(R.styleable.CirclesLoadingView_circleColor, this.color)
+        circleColor = typedArray.getColor(R.styleable.CirclesLoadingView_circleColor, this.circleColor)
         circleRadius = typedArray.getDimension(R.styleable.CirclesLoadingView_circleRadius, this.circleRadius)
         circleMargin = typedArray.getDimension(R.styleable.CirclesLoadingView_circleMargin, this.circleMargin)
         animDistance = typedArray.getDimension(R.styleable.CirclesLoadingView_animDistance, this.animDistance)
@@ -81,9 +75,15 @@ class CirclesLoadingView : View {
         animatorSet.playTogether(animators)
     }
 
+    private val paint = Paint().apply {
+        isAntiAlias = true
+        style = Paint.Style.FILL
+    }
+
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
+        paint.color = circleColor
         var startPoint = width/2 - ((CIRCLE_COUNT-1) * (circleRadius + circleMargin/2))
 
         for (i in 0 until CIRCLE_COUNT) {
