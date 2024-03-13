@@ -22,6 +22,19 @@ android {
     }
 }
 
+afterEvaluate {
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                from components.release
+                groupId = 'com.jbvincey.nestedradiobuttonsample'
+                artifactId = 'nestedradiobuttonsample'
+                version = "0.0.4"
+            }
+        }
+    }
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
